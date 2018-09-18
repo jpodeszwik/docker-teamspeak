@@ -18,6 +18,8 @@ from ubuntu
 
 COPY --from=builder /teamspeak /teamspeak
 
+RUN apt update -y && apt install ca-certificates -y
+
 EXPOSE 9987/udp
 EXPOSE 10011
 EXPOSE 30033
