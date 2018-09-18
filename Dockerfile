@@ -1,7 +1,7 @@
-FROM ubuntu
+FROM ubuntu as builder
 
-ENV CHECKSUM 460c771bf58c9a49b4be2c677652f21896b98a021d7fff286e59679b3f987a59
-ENV VERSION 3.0.13.8
+ENV CHECKSUM 7d6ec8e97d4a9e9913a7e01f2e7f5f9fddfdc41b11e668d013a0f4b574d1918b
+ENV VERSION 3.4.0
 ENV FILE teamspeak3-server_linux_amd64-$VERSION.tar.bz2
 
 RUN apt update -y && \
@@ -11,8 +11,12 @@ ADD http://dl.4players.de/ts/releases/$VERSION/$FILE .
 
 RUN echo "$CHECKSUM $FILE" | sha256sum -c -
 
-RUN tar -xf $FILE && \
-    mv teamspeak3-server_linux_amd64 /teamspeak
+RUN tar -xf $FILE
+RUN mv teamspeak3-server_linux_amd64 /teamspeak
+
+from ubuntu
+
+COPY --from=builder /teamspeak /teamspeak
 
 EXPOSE 9987/udp
 EXPOSE 10011
