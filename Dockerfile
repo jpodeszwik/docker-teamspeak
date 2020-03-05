@@ -1,6 +1,6 @@
 FROM ubuntu as builder
 
-ENV CHECKSUM 92f8a4eb71d4cd6b69bedc4cc78db063eaa928446c9ed2c77a75fd617d7b25dd
+ENV CHECKSUM 18c63ed4a3dc7422e677cbbc335e8cbcbb27acd569e9f2e1ce86e09642c81aa2
 ENV VERSION 3.11.0
 ENV FILE teamspeak3-server_linux_amd64-$VERSION.tar.bz2
 
